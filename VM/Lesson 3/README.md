@@ -114,7 +114,7 @@ Hey, Netology
 Соберите Docker-образ с Ansible, загрузите на Docker Hub и пришлите ссылку вместе с остальными ответами к задачам.
 
 ## Решение 4
-### [Docker image ansible on Docker Hub](https://hub.docker.com/layers/kizune1/devops-netology/ansible/images/sha256-75013128106dfb59b44e92b8e8bfb788ce65d863a2d81643ebd20f386c9d739d?context=explore)
+### [> Docker image ansible on Docker Hub](https://hub.docker.com/layers/kizune1/devops-netology/ansible/images/sha256-75013128106dfb59b44e92b8e8bfb788ce65d863a2d81643ebd20f386c9d739d?context=explore)
 
 ---
 
