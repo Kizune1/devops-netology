@@ -27,8 +27,8 @@ Hey, Netology
 
 ## Решение 1
 
-https://hub.docker.com/layers/kizune1/devops-netology/nginx/images/sha256-482b946cfd218bdcbed5b9f17deaa6f960950cd1b416b55e5c170158d0ef3205?context=explore
-docker pull kizune1/devops-netology:nginx
+### [> Docker Hub mynginx.](https://hub.docker.com/layers/kizune1/)
+
 
 ## Задача 2
 
