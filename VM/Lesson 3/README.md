@@ -82,29 +82,29 @@ Hey, Netology
 ## Решение 3
 
 ### Листинг комманд:
-docker run -v /data:/data --name mycent -d -t centos
-docker run -v /data:/data --name mydeb -d -t debian
-docker exec mycent /bin/bash -c "echo CENTOS>/data/from_centos"
-docker exec mydeb /bin/bash -c "echo DEBIAN>/data/from_debian" (тут добавил еще с дебиана, чтобы нагляднее было)
-echo Host>/data/from_host
+    docker run -v /data:/data --name mycent -d -t centos
+    docker run -v /data:/data --name mydeb -d -t debian
+    docker exec mycent /bin/bash -c "echo CENTOS>/data/from_centos"
+    docker exec mydeb /bin/bash -c "echo DEBIAN>/data/from_debian" (тут добавил еще с дебиана, чтобы нагляднее было)
+    echo Host>/data/from_host
 
 ### Docker CentOS
-root@server1:/home/vagrant#docker exec mycent /bin/bash -c "ls -la /data"
-total 20
-drwxr-xr-x 2 root root 4096 May 29 20:30 .
-drwxr-xr-x 1 root root 4096 May 29 20:27 ..
--rw-r--r-- 1 root root    7 May 29 20:28 from_centos
--rw-r--r-- 1 root root    7 May 29 20:29 from_debian
--rw-r--r-- 1 root root    5 May 29 20:30 from_host
+    root@server1:/home/vagrant#docker exec mycent /bin/bash -c "ls -la /data"
+    total 20
+    drwxr-xr-x 2 root root 4096 May 29 20:30 .
+    drwxr-xr-x 1 root root 4096 May 29 20:27 ..
+    -rw-r--r-- 1 root root    7 May 29 20:28 from_centos
+    -rw-r--r-- 1 root root    7 May 29 20:29 from_debian
+    -rw-r--r-- 1 root root    5 May 29 20:30 from_host
 
 ### Docker Debian
-root@server1:/home/vagrant# docker exec mydeb /bin/bash -c "ls -la /data"
-total 20
-drwxr-xr-x 2 root root 4096 May 29 20:30 .
-drwxr-xr-x 1 root root 4096 May 29 20:27 ..
--rw-r--r-- 1 root root    7 May 29 20:28 from_centos
--rw-r--r-- 1 root root    7 May 29 20:29 from_debian
--rw-r--r-- 1 root root    5 May 29 20:30 from_host
+    root@server1:/home/vagrant# docker exec mydeb /bin/bash -c "ls -la /data"
+    total 20
+    drwxr-xr-x 2 root root 4096 May 29 20:30 .
+    drwxr-xr-x 1 root root 4096 May 29 20:27 ..
+    -rw-r--r-- 1 root root    7 May 29 20:28 from_centos
+    -rw-r--r-- 1 root root    7 May 29 20:29 from_debian
+    -rw-r--r-- 1 root root    5 May 29 20:30 from_host
 
 
 ## Задача 4 (*)
