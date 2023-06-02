@@ -94,7 +94,9 @@ Error: The requested URL returned error: 404:
 
 ## Решение 4
 
-###
+### [Vagrantfile](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/Vagrantfile)
+
+### [playbook.yml](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/playbook.yml)
 
 ### Вывод консоли
     Bringing machine 'server1.netology' up with 'virtualbox' provider...
@@ -187,4 +189,3 @@ Error: The requested URL returned error: 404:
 ### Вывод команды docker ps
 
     CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAME
-    
