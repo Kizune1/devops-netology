@@ -7,6 +7,7 @@
 
 Чтобы получить зачёт, вам нужно предоставить скриншот страницы с созданным образом из личного кабинета YandexCloud.
 
+
 ## Решение 1
 
 ### [Debian 11 with nginx build json](./res/debian11-nginx.json)
@@ -24,6 +25,19 @@
 Используйте Terraform-код в директории ([src/terraform](https://github.com/netology-group/virt-homeworks/tree/virt-11/05-virt-04-docker-compose/src/terraform)).
 
 Чтобы получить зачёт, вам нужно предоставить вывод команды terraform apply и страницы свойств, созданной ВМ из личного кабинета YandexCloud.
+
+
+## Решение 2
+
+### 2.1 
+![Создайте вашу первую виртуальную машину в YandexCloud с помощью web-интерфейса YandexCloud.](./res/first%20yc%20vm.png)
+
+### 2.2
+
+### [Вывод команды terraform apply](./res/terraform%20apply)
+
+![Скриншот из личного кабинета:](./res/yc_terra_provision.png)
+    
 
 ## Задача 3
 
