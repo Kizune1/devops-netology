@@ -94,6 +94,8 @@ Error: The requested URL returned error: 404:
 
 ## Решение 4
 
+###
+
 ### Вывод консоли
     Bringing machine 'server1.netology' up with 'virtualbox' provider...
     ==> server1.netology: Importing base box 'bento/ubuntu-20.04'...
@@ -135,7 +137,7 @@ Error: The requested URL returned error: 404:
 
     Alternatively, the compatibility mode can be specified in your Vagrantfile:
     https://www.vagrantup.com/docs/provisioning/ansible_common.html#compatibility_mode
-    
+
     server1.netology: Running ansible-playbook...
     [WARNING]: Ansible is being run in a world writable directory
     (/mnt/c/Users/aluka/ansible), ignoring it as an ansible.cfg source. For more
@@ -178,5 +180,11 @@ Error: The requested URL returned error: 404:
     PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/    privacy-policy"
     VERSION_CODENAME=focal
     UBUNTU_CODENAME=focal
+### Вывод команды docker -v
+
+    Docker version 24.0.2, build cb74dfc
+
 ### Вывод команды docker ps
-    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+
+    CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAME
+    
