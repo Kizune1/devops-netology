@@ -13,7 +13,7 @@
 
 ### [Clear ubuntu 20.04 build json](./res/ubuntu-2004.json)
 
-![Образа.](https://disk.yandex.ru/client/disk/res?idApp=client&dialog=slider&idDialog=%2Fdisk%2Fres%2Fyc%20images.png)
+![Образа.](./res/yc%20images.png)
 
 ## Задача 2
 
