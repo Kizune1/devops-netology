@@ -94,9 +94,10 @@ Error: The requested URL returned error: 404:
 
 ## Решение 4
 
-### [Vagrantfile](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/Vagrantfile)
+### Конфиги:
 
-### [playbook.yml](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/playbook.yml)
+### [1. Vagrantfile](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/Vagrantfile)
+### [2. playbook.yml](https://github.com/Kizune1/devops-netology/blob/main/VM/Lesson%202/playbook.yml)
 
 ### Вывод консоли
     Bringing machine 'server1.netology' up with 'virtualbox' provider...
