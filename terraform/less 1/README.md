@@ -10,11 +10,14 @@
 ### Чеклист готовности к домашнему заданию
 
 1. Скачайте и установите актуальную версию **terraform** >=1.4.X . Приложите скриншот вывода команды ```terraform --version```.
+```
     vagrant@server1:~/Netology-DevOps/4-terraform$ terraform --version
     Terraform v1.4.6
     on linux_amd64
     + provider registry.terraform.io/yandex-cloud/yandex v0.92.0
+```
 2. Скачайте на свой ПК данный git репозиторий. Исходный код для выполнения задания расположен в директории **01/src**.
+```
     vagrant@server1:~$ git clone git@github.com:Kizune1/ter-homeworks.git
     Cloning into 'ter-homeworks'...
     remote: Enumerating objects: 718, done.
@@ -23,12 +26,15 @@
     remote: Total 718 (delta 151), reused 178 (delta 105), pack-reused 451
     Receiving objects: 100% (718/718), 169.58 KiB | 232.00 KiB/s, done.
     Resolving deltas: 100% (362/362), done.
+```
 3. Убедитесь, что в вашей ОС установлен docker.
+```
     vagrant@server1:~/ter-homeworks$ docker --version
     Docker version 24.0.2, build cb74dfc
     vagrant@server1:~/ter-homeworks$ docker-compose --version
     docker-compose version 1.26.0, build d4451659
     vagrant@server1:~/ter-homeworks$
+```
 
 
 ------
