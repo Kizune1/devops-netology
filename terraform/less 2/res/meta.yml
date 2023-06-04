@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: odmin
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGbClSFk6heol4lpAOUc/AH0Ll/sjXM1Alc4Jr53uUsE noswear316@gmail.com
