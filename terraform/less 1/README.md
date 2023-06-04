@@ -33,7 +33,6 @@
     Docker version 24.0.2, build cb74dfc
     vagrant@server1:~/ter-homeworks$ docker-compose --version
     docker-compose version 1.26.0, build d4451659
-    vagrant@server1:~/ter-homeworks$
 ```
 
 
