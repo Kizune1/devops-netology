@@ -60,15 +60,43 @@
 Выполните команду ```terraform validate```. Объясните в чем заключаются намеренно допущенные ошибки? Исправьте их.
 ```
     resource "docker_image"  --- Должен содержать имя
-    resource "docker_container" "1nginx"  --- Bмя должно начинатся с буквы или нижнего подчёркивания.
+    resource "docker_container" "1nginx"  --- Имя должно начинатся с буквы или нижнего подчёркивания.
     name  = "example_${random_password.random_string_fake.resuld}" --- просто ошибки в тексте.
         random_string_fake --- не задекларирован, задекларирован random_string.
         random_password.random_string_fake.resuld --- опечатка в resuld(t).
 ```
 5. Выполните код. В качестве ответа приложите вывод команды ```docker ps```
+```
+    vagrant@server1:~/Netology-DevOps/4-terraform/terr-less-1/01/src$ sudo docker ps
+    CONTAINER ID   IMAGE          COMMAND                  CREATED         STATUS         PORTS                  NAMES
+    1a822bc9f0b5   f9c14fe76d50   "/docker-entrypoint.…"   8 seconds ago   Up 7 seconds   0.0.0.0:8000->80/tcp   example_w58wFJP4eIZYVX64
+
+```
 6. Замените имя docker-контейнера в блоке кода на ```hello_world```, выполните команду ```terraform apply -auto-approve```.
 Объясните своими словами, в чем может быть опасность применения ключа  ```-auto-approve``` ? В качестве ответа дополнительно приложите вывод команды ```docker ps```
-8. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**. 
+```
+    vagrant@server1:~/Netology-DevOps/4-terraform/terr-less-1/01/src$ sudo docker ps
+    CONTAINER ID   IMAGE          COMMAND                  CREATED          STATUS          PORTS                  NAMES
+    ff9609512263   f9c14fe76d50   "/docker-entrypoint.…"   19 seconds ago   Up 19 seconds   0.0.0.0:8000->80/tcp   hello_world_w58wFJP4eIZYVX64
+
+
+    Ключ -auto-approve убирает подтверждение при выполнении задекларированных конфигов, что может привести к падению всего, если конфиги были изменены.
+    Сначала plan, потом apply!
+```
+8. Уничтожьте созданные ресурсы с помощью **terraform**. Убедитесь, что все ресурсы удалены. Приложите содержимое файла **terraform.tfstate**.
+```
+    terraform destroy
+    vagrant@server1:~/Netology-DevOps/4-terraform/terr-less-1/01/src$ cat terraform.tfstate
+    {
+      "version": 4,
+      "terraform_version": "1.4.6",
+      "serial": 15,
+      "lineage": "aacdca0d-ec1c-b669-8a8c-e6dc281ce828",
+      "outputs": {},
+      "resources": [],
+      "check_results": null
+    }
+```
 9. Объясните, почему при этом не был удален docker образ **nginx:latest** ? Ответ подкрепите выдержкой из документации провайдера.
 
 
