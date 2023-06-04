@@ -28,15 +28,23 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 
 1. Изучите проект. В файле variables.tf объявлены переменные для yandex provider.
 2. Переименуйте файл personal.auto.tfvars_example в personal.auto.tfvars. Заполните переменные (идентификаторы облака, токен доступа). Благодаря .gitignore этот файл не попадет в публичный репозиторий. **Вы можете выбрать иной способ безопасно передать секретные данные в terraform.**
+```
+    Для авторизации я пользуюсь сервисным аккаунтом. [Скриптом](./res/yc_service_key.sh) получаю ключ и записываю его в key.json
+    В [providers.tf](./res/providers.tf) указываю key.json в качестве key-файла.
+    Cloud и folder id беру из personal.auto.tfvars.
+```
 3. Сгенерируйте или используйте свой текущий ssh ключ. Запишите его открытую часть в переменную **vms_ssh_root_key**.
+```
+    Metadata берется из файла [meta.yml](./res/meta.yml), туда входят логин, группа sudo, оболочка, безпарольный sudo и ssh public key.
+```
 4. Инициализируйте проект, выполните код. Исправьте возникшую ошибку. Ответьте в чем заключается ее суть?
 ```
-Необходимо чётное кол-во ядер минимум 2.
+    Необходимо чётное кол-во ядер минимум 2.
 ```
 5. Ответьте, как в процессе обучения могут пригодиться параметры```preemptible = true``` и ```core_fraction=5``` в параметрах ВМ? Ответ в документации Yandex cloud.
 ```
-core_fraction = 5 --- Означает % допустимой загрузки ЦП. В обучении не так важна скороть, а вот грант будет расходоваться меньше.
-preemptible = true --- Включает опцию прерываемой vm. После 24 часов она выключится и не будет забирать ресурсы.
+    core_fraction = 5 --- Означает % допустимой загрузки ЦП. В обучении не так важна скороть, а вот грант будет расходоваться меньше.
+    preemptible = true --- Включает опцию прерываемой vm. После 24 часов она выключится и не будет забирать ресурсы.
 ```
 
 В качестве решения приложите:
@@ -47,15 +55,28 @@ preemptible = true --- Включает опцию прерываемой vm. П
 - ответы на вопросы. Выше.
 
 #### [Ссылка на main.tf](./res/main.tf)
-#### [Ссылка на файл с metadata meta.yml](./res/meta.yml)
+
 
 ### Задание 2
 
 1. Изучите файлы проекта.
 2. Замените все "хардкод" **значения** для ресурсов **yandex_compute_image** и **yandex_compute_instance** на **отдельные** переменные. К названиям переменных ВМ добавьте в начало префикс **vm_web_** .  Пример: **vm_web_name**.
 2. Объявите нужные переменные в файле variables.tf, обязательно указывайте тип переменной. Заполните их **default** прежними значениями из main.tf. 
-3. Проверьте terraform plan (изменений быть не должно). 
+3. Проверьте terraform plan (изменений быть не должно).
+```
+    vagrant@server1:~/Netology-DevOps/4-terraform/terr-less-2/src$ terraform plan
+    data.yandex_compute_image.ubuntu: Reading...
+    yandex_vpc_network.develop: Refreshing state... [id=enpuoerqjvkr3nsvua0v]
+    data.yandex_compute_image.ubuntu: Read complete after 0s [id=fd8lape4adm5melne14m]
+    yandex_vpc_subnet.develop: Refreshing state... [id=e9bofkp8j79grfnua3cg]
+    yandex_compute_instance.platform: Refreshing state... [id=fhmhvcbap8gi2eiph9hs]
 
+    No changes. Your infrastructure matches the configuration.
+
+    Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed.
+```
+
+#### [Ссылка на main.tf без хардкода :)](./res/main_without_hardcode.tf)
 
 ### Задание 3
 
