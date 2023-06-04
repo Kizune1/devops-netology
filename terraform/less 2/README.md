@@ -84,6 +84,8 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 2. Скопируйте блок ресурса и создайте с его помощью вторую ВМ(в файле main.tf): **"netology-develop-platform-db"** ,  cores  = 2, memory = 2, core_fraction = 20. Объявите ее переменные с префиксом **vm_db_** в том же файле('vms_platform.tf').
 3. Примените изменения.
 
+#### [vms_platform.tf](./res/vms_platform.tf)
+
 
 ### Задание 4
 
@@ -91,21 +93,67 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 2. Примените изменения.
 
 В качестве решения приложите вывод значений ip-адресов команды ```terraform output```
-
+```
+    vagrant@server1:~/Netology-DevOps/4-terraform/terr-less-2/src$ terraform output
+    external_ip_address_platform_yandex_cloud1_vm_db = "51.250.92.91"
+    external_ip_address_platform_yandex_cloud_vm_web = "62.84.117.164"
+    internal_ip_address_platform_yandex_cloud_vm_db = "10.0.1.22"
+    internal_ip_address_platform_yandex_cloud_vm_web = "10.0.1.15"
+```
 
 ### Задание 5
 
 1. В файле locals.tf опишите в **одном** local-блоке имя каждой ВМ, используйте интерполяцию ${..} с несколькими переменными по примеру из лекции.
+#### [locals.tf](./res/locals.tf)
 2. Замените переменные с именами ВМ из файла variables.tf на созданные вами local переменные.
 3. Примените изменения.
-
+```
+     + name                      = "netology-develop-platform-web"
+     + name                      = "netology-develop-platform-db"
+```
+#### [main with locals variables](./res/main_with_locals.tf)
 
 ### Задание 6
 
 1. Вместо использования 3-х переменных  ".._cores",".._memory",".._core_fraction" в блоке  resources {...}, объедените их в переменные типа **map** с именами "vm_web_resources" и "vm_db_resources".
+
+Добавлены блоки:
+```
+    variable "vm_web_resources" {
+      type = map(number)
+      default = {
+        cores = 4
+        memory = 4
+        core_fraction = 20
+      }
+    }
+    variable "vm_db_resources" {
+        type = map(number)
+        default = {
+          cores = 2
+          memory = 2
+          core_fraction = 20
+        }   
+    }
+```
 2. Так же поступите с блоком **metadata {serial-port-enable, ssh-keys}**, эта переменная должна быть общая для всех ваших ВМ.
+
+Данный блок обращается к отдельному файлу:
+```
+    metadata = {
+    serial-port-enable = 1
+    user-data = "${file("./meta.yml")}"
+  }
+```
 3. Найдите и удалите все более не используемые переменные проекта.
+
+[Variables without unnecessary](./res/variables_without_uness.tf)
+
 4. Проверьте terraform plan (изменений быть не должно).
+
+```
+    No changes. Your infrastructure matches the configuration
+```
 
 ------
 
@@ -118,34 +166,59 @@ https://console.cloud.yandex.ru/folders/<ваш cloud_id>/vpc/security-groups.
 
 Изучите содержимое файла console.tf. Откройте terraform console, выполните следующие задания: 
 
+```
+    locals {
+
+      test_list = ["develop", "staging", "production"]
+
+      test_map = {
+        admin = "John"
+        user  = "Alex"
+      }
+
+      servers = {
+        develop = {
+          cpu   = 2
+          ram   = 4
+          image = "ubuntu-21-10"
+          disks = ["vda", "vdb"]
+        },
+        stage = {
+          cpu   = 4
+          ram   = 8
+          image = "ubuntu-20-04"
+          disks = ["vda", "vdb"]
+        },
+        production = {
+          cpu   = 10
+          ram   = 40
+          image = "ubuntu-20-04"
+          disks = ["vda", "vdb", "vdc", "vdd"]
+        }
+      }
+    }
+```
+
 1. Напишите, какой командой можно отобразить **второй** элемент списка test_list?
+```
+    > local.test_list.1
+    "staging"
+```
 2. Найдите длину списка test_list с помощью функции length(<имя переменной>).
+```
+    > length(local.test_list)
+    3
+```
 3. Напишите, какой командой можно отобразить значение ключа admin из map test_map ?
+```
+    > local.test_map.admin
+    "John"
+```
 4. Напишите interpolation выражение, результатом которого будет: "John is admin for production server based on OS ubuntu-20-04 with X vcpu, Y ram and Z virtual disks", используйте данные из переменных test_list, test_map, servers и функцию length() для подстановки значений.
+```
+    msg = "${ local.test_map.admin } is ${ local.test_list.3 } for server ${ local.test_list.2 } based on OS ${ local.servers.production.image } with ${ local.servers.production.cpu } vcpu, ${ local.servers.production.ram } ram and ${ length(local.servers.production.disks) } virtual disks" 
 
+    > local.msg
+    "John is admin for server production based on OS ubuntu-20-04 with 10 vcpu, 40 ram and 4 virtual disks"
+```
 В качестве решения предоставьте необходимые команды и их вывод.
-
-------
-### Правила приема работы
-
-В git-репозитории, в котором было выполнено задание к занятию "Введение в Terraform", создайте новую ветку terraform-02, закомитьте в эту ветку свой финальный код проекта. Ответы на задания и необходимые скриншоты оформите в md-файле в ветке terraform-02.
-
-В качестве результата прикрепите ссылку на ветку terraform-02 в вашем репозитории.
-
-**ВАЖНО! Удалите все созданные ресурсы**.
-
-
-### Критерии оценки
-
-Зачёт:
-
-* выполнены все задания;
-* ответы даны в развёрнутой форме;
-* приложены соответствующие скриншоты и файлы проекта;
-* в выполненных заданиях нет противоречий и нарушения логики.
-
-На доработку:
-
-* задание выполнено частично или не выполнено вообще;
-* в логике выполнения заданий есть противоречия и существенные недостатки. 
-
