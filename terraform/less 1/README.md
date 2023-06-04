@@ -116,24 +116,48 @@ shekeriev.
 2. Создайте с его помощью любую виртуальную машину. Чтобы не использовать VPN советуем выбрать любой образ с расположением в github из [**списка**](https://www.vagrantbox.es/)
 
 В качестве ответа приложите plan для создаваемого ресурса и скриншот созданного в VB ресурса. 
+```
+    Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+      + create
+
+    Terraform will perform the following actions:
+
+      # virtualbox_vm.vm1 will be created
+      + resource "virtualbox_vm" "vm1" {
+          + cpus      = 4
+          + id        = (known after apply)
+          + image     = "https://app.vagrantup.com/shekeriev/boxes/debian-11/versions/0.2/providers/virtualbox.box"
+          + memory    = "2048 mib"
+          + name      = "terra-test-deb"
+          + status    = "running"
+          + user_data = <<-EOT
+                #cloud-config
+                users:
+                  - name: odmin
+                    groups: sudo
+                    shell: /bin/bash
+                    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+                    ssh-authorized-keys:
+                      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGbClSFk6heol4lpAOUc/AH0Ll/sjXM1Alc4Jr53uUsE noswear316@gmail.com
+            EOT
+
+          + network_adapter {
+              + device                 = "IntelPro1000MTDesktop"
+              + host_interface         = "VirtualBox Host-Only Ethernet Adapter"
+              + ipv4_address           = (known after apply)
+              + ipv4_address_available = (known after apply)
+              + mac_address            = (known after apply)
+              + status                 = (known after apply)
+              + type                   = "hostonly"
+            }
+        }
+
+    Plan: 1 to add, 0 to change, 0 to destroy.
+
+    Changes to Outputs:
+      + IPAddress = (known after apply)
+```
+
+![Скриншот машины в VB](./res/terra-virtualbox.png)
 
 ------
-
-### Правила приема работы
-
-Домашняя работа оформляется в отдельном GitHub репозитории в файле README.md.   
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
-### Критерии оценки
-
-Зачёт:
-
-* выполнены все задания;
-* ответы даны в развёрнутой форме;
-* приложены соответствующие скриншоты и файлы проекта;
-* в выполненных заданиях нет противоречий и нарушения логики.
-
-На доработку:
-
-* задание выполнено частично или не выполнено вообще;
-* в логике выполнения заданий есть противоречия и существенные недостатки. 
