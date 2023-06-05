@@ -50,16 +50,18 @@
 ## Решение 3
 
 ### Вывод комманды docker ps
-    odmin@node01:~$ sudo docker ps
-    CONTAINER ID   IMAGE                              COMMAND                  CREATED         STATUS                          PORTS      NAMES
-    97159f9c507e   stefanprodan/caddy                 "/sbin/tini -- caddy…"   7 minutes ago   Restarting (2) 22 seconds ago              caddy
-    707505d806e4   gcr.io/cadvisor/cadvisor:v0.47.0   "/usr/bin/cadvisor -…"   7 minutes ago   Up 7 minutes (healthy)          8080/tcp   cadvisor
-    3b60a27ab346   prom/prometheus:v2.17.1            "/bin/prometheus --c…"   7 minutes ago   Up 7 minutes                    9090/tcp   prometheus
-    c71dc46355f9   grafana/grafana:7.4.2              "/run.sh"                7 minutes ago   Up 7 minutes                    3000/tcp   grafana
-    bea43a9285e1   prom/pushgateway:v1.2.0            "/bin/pushgateway"       7 minutes ago   Up 7 minutes                    9091/tcp   pushgateway
-    abe4ef7a6b4f   prom/alertmanager:v0.20.0          "/bin/alertmanager -…"   7 minutes ago   Up 7 minutes                    9093/tcp   alertmanager
-    c0adca1daa5c   prom/node-exporter:v0.18.1         "/bin/node_exporter …"   7 minutes ago   Up 7 minutes                    9100/tcp   nodeexporter
-
+```
+    [odmin@node01 stack]$ sudo docker-compose ps
+        Name                  Command                  State                                                   Ports
+    -------------------------------------------------------------------------------------------------------------------------------------------------------------
+    alertmanager   /bin/alertmanager --config ...   Up             9093/tcp
+    caddy          /sbin/tini -- caddy -agree ...   Up             0.0.0.0:3000->3000/tcp, 0.0.0.0:9090->9090/tcp, 0.0.0.0:9091->9091/tcp, 0.0.0.0:9093->9093/tcp
+    cadvisor       /usr/bin/cadvisor -logtostderr   Up (healthy)   8080/tcp
+    grafana        /run.sh                          Up             3000/tcp
+    nodeexporter   /bin/node_exporter --path. ...   Up             9100/tcp
+    prometheus     /bin/prometheus --config.f ...   Up             9090/tcp
+    pushgateway    /bin/pushgateway                 Up             9091/tcp
+```
 
 ## Задача 4
 
@@ -71,7 +73,8 @@
 Чтобы получить зачёт, предоставьте: 
 
 - скриншот работающего веб-интерфейса Grafana с текущими метриками, как на примере ниже.
-
+![Grafana](./res/grafana_main.png)
+![Yandex Cloud](./res/yc_main.png)
 
 ## Задача 5 (*)
 
