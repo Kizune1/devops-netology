@@ -99,7 +99,9 @@
 ```
 9. Объясните, почему при этом не был удален docker образ **nginx:latest** ? Ответ подкрепите выдержкой из документации провайдера.
 ```
-    image_id только для чтения, при первоначальной настройке он скачивается, но не удаляется из репозитория.
+    keep_locally (Boolean) If true, then the Docker image won't be deleted on destroy operation. If this is false, it will delete the image from the docker local storage on destroy operation.
+
+    Если true, то при destroy локальный образ не будет удалён. Если false, то всё наоборот. У нас стоит true.
 ```
 
 ------
