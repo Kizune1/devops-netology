@@ -48,7 +48,7 @@
 
 - Скриншот из вебморды Yandex Cloud
 
-![Yandex Cloud](./res/meta.yml)
+![Yandex Cloud](./res/vms.png)
 ------
 
 ### Задание 3
