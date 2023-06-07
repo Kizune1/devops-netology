@@ -17,12 +17,12 @@
 
 Приложите скриншот входящих правил "Группы безопасности" в ЛК Yandex Cloud  или скриншот отказа в предоставлении доступа к preview версии.
 - Security group external
-[Security group external](./res/sg_ex.png)
+![Security group external](./res/sg_ex.png)
 
 
 
 - Security group internal
-[Security group internal](./res/sg_in.png)
+![Security group internal](./res/sg_in.png)
 
 ------
 
