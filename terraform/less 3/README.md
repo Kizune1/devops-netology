@@ -68,7 +68,12 @@
 Готовый код возьмите из демонстрации к лекции [**demonstration2**](https://github.com/netology-code/ter-homeworks/tree/main/demonstration2).
 Передайте в него в качестве переменных группы виртуальных машин из задания 2.1, 2.2 и 3.2.(т.е. 5 ВМ)
 2. Инвентарь должен содержать 3 группы [webservers], [databases], [storage] и быть динамическим, т.е. обработать как группу из 2-х ВМ так и 999 ВМ.
-4. Выполните код. Приложите скриншот получившегося файла.
+  ```
+  Код для storage в файлах:
+  - [ansible-storage.tf](./res/ansible-storage.tf)
+  - [hosts-storage.tftpl](./res/hosts-storage.tftpl)
+  ```
+3. Выполните код. Приложите скриншот получившегося файла.
     - Скриншот hosts
     ![hosts](./res/hosts.png)
 
@@ -109,7 +114,7 @@
 
 1. Используя null_resource и local-exec примените ansible-playbook к ВМ из ansible inventory файла.
 Готовый код возьмите из демонстрации к лекции [**demonstration2**](https://github.com/netology-code/ter-homeworks/tree/main/demonstration2).
-3. Дополните файл шаблон hosts.tftpl. 
+2. Дополните файл шаблон hosts.tftpl. 
 Формат готового файла:
 ```netology-develop-platform-web-0   ansible_host="<внешний IP-address или внутренний IP-address если у ВМ отсутвует внешний адрес>"```
 
