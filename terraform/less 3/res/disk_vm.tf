@@ -1,4 +1,4 @@
-resource "yandex_compute_disk" "netology-disks" {
+resource "yandex_compute_disk" "test-disk" {
   count      = 3
   name       = "netology-disk-${count.index}"
   type       = "network-hdd"
@@ -25,7 +25,12 @@ resource "yandex_compute_instance" "storage" {
         size = 5
       }   
     }
-
+    dynamic "secondary_disk" {
+      for_each = yandex_compute_disk.test-disk[*].id
+      content = {
+        disk_id = yandex_compute_disk.test-disk[each.key].id
+      } 
+    }
     scheduling_policy { preemptible = true }
 
     allow_stopping_for_update = true
