@@ -31,7 +31,7 @@
     module "yc_network" {
       source = "../yc_network"
     }
-    
+
     module "test-vm" {
       source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
       network_id      = module.yc_network.network_id
@@ -58,9 +58,60 @@
 
 ### Задание 3
 1. Выведите список ресурсов в стейте.
+  ```
+    data.template_file.cloudinit
+    module.test-vm.data.yandex_compute_image.my_image
+    module.test-vm.yandex_compute_instance.vm[0]
+    module.test-vm.yandex_compute_instance.vm[1]
+    module.yc_network.yandex_vpc_network.develop
+    module.yc_network.yandex_vpc_subnet.develop
+  ```
 2. Удалите из стейта модуль vpc.
+
+  ```
+    Removed module.yc_network.yandex_vpc_network.develop
+    Removed module.yc_network.yandex_vpc_subnet.develop
+    Successfully removed 2 resource instance(s).
+  ```
+
 3. Импортируйте его обратно. Проверьте terraform plan - изменений быть не должно.
 Приложите список выполненных команд и вывод.
+  ```
+  terraform import 'module.yc_network.yandex_vpc_network.develop' 'enpu86o6rctqf2dr837l'
+
+        data.template_file.cloudinit: Reading...
+        data.template_file.cloudinit: Read complete after 0s [id=8da66e2692944902eff768d095bb335e14a9db290df1a1fc68ab8f022cb4cf35]
+        module.yc_network.yandex_vpc_network.develop: Importing from ID "enpu86o6rctqf2dr837l"...
+        module.yc_network.yandex_vpc_network.develop: Import prepared!
+          Prepared yandex_vpc_network for import
+        module.yc_network.yandex_vpc_network.develop: Refreshing state... [id=enpu86o6rctqf2dr837l]
+        module.test-vm.data.yandex_compute_image.my_image: Reading...
+        module.test-vm.data.yandex_compute_image.my_image: Read complete after 0s [id=fd852pbtueis1q0pbt4o]
+
+        Import successful!
+
+        The resources that were imported are shown above. These resources are now in
+        your Terraform state and will henceforth be managed by Terraform.
+
+  ```
+
+  ```
+  terraform import 'module.yc_network.yandex_vpc_subnet.develop' 'e9balt6aj330tu9nugpp'
+
+        data.template_file.cloudinit: Reading...
+        data.template_file.cloudinit: Read complete after 0s [id=8da66e2692944902eff768d095bb335e14a9db290df1a1fc68ab8f022cb4cf35]
+        module.test-vm.data.yandex_compute_image.my_image: Reading...
+        module.yc_network.yandex_vpc_subnet.develop: Importing from ID "e9balt6aj330tu9nugpp"...
+        module.yc_network.yandex_vpc_subnet.develop: Import prepared!
+          Prepared yandex_vpc_subnet for import
+        module.yc_network.yandex_vpc_subnet.develop: Refreshing state... [id=e9balt6aj330tu9nugpp]
+        module.test-vm.data.yandex_compute_image.my_image: Read complete after 1s [id=fd852pbtueis1q0pbt4o]
+        
+        Import successful!
+        
+        The resources that were imported are shown above. These resources are now in
+        your Terraform state and will henceforth be managed by Terraform.
+  ```
 
 ## Дополнительные задания (со звездочкой*)
 
