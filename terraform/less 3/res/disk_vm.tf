@@ -26,10 +26,12 @@ resource "yandex_compute_instance" "storage" {
       }   
     }
     dynamic "secondary_disk" {
-      for_each = yandex_compute_disk.test-disk[*].id
-      content = {
-        disk_id = yandex_compute_disk.test-disk[each.key].id
-      } 
+      for_each = yandex_compute_disk.test-disk.*
+      content {
+        disk_id = yandex_compute_disk.test-disk[secondary_disk.name].id
+      }
+      
+      
     }
     scheduling_policy { preemptible = true }
 
