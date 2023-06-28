@@ -28,6 +28,10 @@
 3. Замените ресурсы yandex_vpc_network и yandex_vpc_subnet, созданным модулем.
 
   ```
+    module "yc_network" {
+      source = "../yc_network"
+    }
+    
     module "test-vm" {
       source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
       network_id      = module.yc_network.network_id
@@ -50,15 +54,7 @@
 
   - [README.md модуля yc_network](./yc_network/README.md)    
  
-Пример вызова:
-```
-module "vpc_dev" {
-  source       = "./vpc"
-  env_name     = "develop"
-  zone = "ru-central1-a"
-  cidr = "10.0.1.0/24"
-}
-```
+
 
 ### Задание 3
 1. Выведите список ресурсов в стейте.
