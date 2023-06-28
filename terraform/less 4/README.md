@@ -12,14 +12,43 @@
 ### Решение 1
 
 #### Скриншот созданой машины с nginx.
+
 ![nginx](./res/nginx.png)
 
 ### Задание 2
 
 1. Напишите локальный модуль vpc, который будет создавать 2 ресурса: **одну** сеть и **одну** подсеть в зоне, объявленной при вызове модуля. например: ```ru-central1-a```.
+
+  - [Модуль yc_network.](./yc_network/)
+
 2. Модуль должен возвращать значения vpc.id и subnet.id
+
+  - [Outputs модуля yc_network](./yc_network/outputs.tf)
+
 3. Замените ресурсы yandex_vpc_network и yandex_vpc_subnet, созданным модулем.
-4. Сгенерируйте документацию к модулю с помощью terraform-docs.    
+
+  ```
+    module "test-vm" {
+      source          = "git::https://github.com/udjin10/yandex_compute_instance.git?ref=main"
+      network_id      = module.yc_network.network_id
+      subnet_zones    = ["ru-central1-a"]
+      subnet_ids      = [ module.yc_network.subnet_id ]
+      instance_name   = "web"
+      instance_count  = 2
+      image_family    = "ubuntu-2004-lts"
+      public_ip       = true
+
+      metadata = {
+          user-data          = data.template_file.cloudinit.rendered #Для демонстрации №3
+          serial-port-enable = 1
+      }
+
+    }
+  ```
+
+4. Сгенерируйте документацию к модулю с помощью terraform-docs.
+
+  - [README.md модуля yc_network](./yc_network/README.md)    
  
 Пример вызова:
 ```
