@@ -59,19 +59,23 @@
 ### Задание 3
 1. Выведите список ресурсов в стейте.
   ```
-    data.template_file.cloudinit
-    module.test-vm.data.yandex_compute_image.my_image
-    module.test-vm.yandex_compute_instance.vm[0]
-    module.test-vm.yandex_compute_instance.vm[1]
-    module.yc_network.yandex_vpc_network.develop
-    module.yc_network.yandex_vpc_subnet.develop
+    terraform state list
+    
+        data.template_file.cloudinit
+        module.test-vm.data.yandex_compute_image.my_image
+        module.test-vm.yandex_compute_instance.vm[0]
+        module.test-vm.yandex_compute_instance.vm[1]
+        module.yc_network.yandex_vpc_network.develop
+        module.yc_network.yandex_vpc_subnet.develop
   ```
 2. Удалите из стейта модуль vpc.
 
   ```
-    Removed module.yc_network.yandex_vpc_network.develop
-    Removed module.yc_network.yandex_vpc_subnet.develop
-    Successfully removed 2 resource instance(s).
+    terraform state rm 'module.yc_network'
+
+        Removed module.yc_network.yandex_vpc_network.develop
+        Removed module.yc_network.yandex_vpc_subnet.develop
+        Successfully removed 2 resource instance(s).
   ```
 
 3. Импортируйте его обратно. Проверьте terraform plan - изменений быть не должно.
@@ -106,9 +110,9 @@
           Prepared yandex_vpc_subnet for import
         module.yc_network.yandex_vpc_subnet.develop: Refreshing state... [id=e9balt6aj330tu9nugpp]
         module.test-vm.data.yandex_compute_image.my_image: Read complete after 1s [id=fd852pbtueis1q0pbt4o]
-        
+
         Import successful!
-        
+
         The resources that were imported are shown above. These resources are now in
         your Terraform state and will henceforth be managed by Terraform.
   ```
