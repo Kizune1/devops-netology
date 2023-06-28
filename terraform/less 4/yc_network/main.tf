@@ -8,13 +8,12 @@ terraform {
 }
 
 resource "yandex_vpc_network" "develop" {
-  name = "develop"
+  name = var.network_name
 }
 
-#создаем подсеть
 resource "yandex_vpc_subnet" "develop" {
-  name           = "develop-ru-central1-a"
-  zone           = "ru-central1-a"
+  name           = var.subnet_name
+  zone           = var.subnet_zone
   network_id     = yandex_vpc_network.develop.id
-  v4_cidr_blocks = ["10.0.1.0/24"]
+  v4_cidr_blocks = [ var.subnet_cidr ]
 }
