@@ -24,6 +24,19 @@
 
 1. Возьмите ваш GitHub репозиторий с **выполненным ДЗ №4** в ветке 'terraform-04' и сделайте из него ветку 'terraform-05'
 2. Повторите демонстрацию лекции: настройте YDB, S3 bucket, yandex service account, права доступа и мигрируйте State проекта в S3 с блокировками. Предоставьте скриншоты процесса в качестве ответа.
+#### Создание бакета.
+![backet](./res/create_backet.png)
+
+#### Добавление прав сервисному аккаунту
+![add_permissions](./res/add_permissions.png)
+
+#### Создание базы ydb
+![create_ydb](./res/create_ydb_database.png)
+
+#### Создание таблицы ydb
+![create_ydb_table](./res/create_ydb_table.png)
+
+
 3. Закомитьте в ветку 'terraform-05' все изменения.
 4. Откройте в проекте terraform console, а в другом окне из этой же директории попробуйте запустить terraform apply.
 5. Пришлите ответ об ошибке доступа к State.
