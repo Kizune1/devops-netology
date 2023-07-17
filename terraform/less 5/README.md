@@ -36,10 +36,38 @@
 #### Создание таблицы ydb
 ![create_ydb_table](./res/create_ydb_table.png)
 
+#### tfstate в бакете
+![tfstate_in_backet](./res/tfstate_in_backet.png)
+
+#### tfstate lock в dynamodb
+![tfstate_lock](./res/tfstate_lock.png)
 
 3. Закомитьте в ветку 'terraform-05' все изменения.
 4. Откройте в проекте terraform console, а в другом окне из этой же директории попробуйте запустить terraform apply.
+
 5. Пришлите ответ об ошибке доступа к State.
+```
+    PS C:\Обучение\repogithub\Netology-DevOps\4-terraform\terr-less-5\demonstration1>   terraform.exe apply
+    Acquiring state lock. This may take a few moments...
+        ╷
+        │ Error: Error acquiring the state lock
+        │
+        │ Error message: ConditionalCheckFailedException: Condition not satisfied
+        │ Lock Info:
+        │   ID:        dd0a1b1a-87c5-5610-190a-8cf1d7b548ae
+        │   Path:      tfstate-backend/terraform.tfstate
+        │   Operation: OperationTypeInvalid
+        │   Who:       DESKTOP-I22BLB7\odmin@DESKTOP-I22BLB7
+        │   Version:   1.4.6
+        │   Created:   2023-07-17 15:22:51.2525127 +0000 UTC
+        │   Info:
+        │
+        │
+        │ Terraform acquires a state lock to protect the state from being written
+        │ by multiple users at the same time. Please resolve the issue above and try
+        │ again. For most commands, you can disable locking with the "-lock=false"
+        │ flag, but this is not recommended.
+```
 6. Принудительно разблокируйте State. Пришлите команду и вывод.
 
 
@@ -51,7 +79,20 @@
 3. Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'. 
 4. Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan.
 5. Пришлите ссылку на PR для ревью(вливать код в 'terraform-05' не нужно).
-
+```
+        PS C:\Обучение\repogithub\Netology-DevOps\4-terraform\terr-less-5\demonstration1>       terraform.exe force-unlock dd0a1b1a-87c5-5610-190a-8cf1d7b548ae
+        Do you really want to force-unlock?
+          Terraform will remove the lock on the remote state.
+          This will allow local Terraform commands to modify this state, even though it
+          may still be in use. Only 'yes' will be accepted to confirm.
+        
+          Enter a value: yes
+        
+        Terraform state has been successfully unlocked!
+        
+        The state has been unlocked, and Terraform commands should now be able to
+        obtain a new lock on the remote state.
+```
 ------
 ### Задание 4
 
