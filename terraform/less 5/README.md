@@ -69,16 +69,6 @@
         │ flag, but this is not recommended.
 ```
 6. Принудительно разблокируйте State. Пришлите команду и вывод.
-
-
-------
-### Задание 3  
-
-1. Сделайте в GitHub из ветки 'terraform-05' новую ветку 'terraform-hotfix'.
-2. Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте комит.
-3. Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'. 
-4. Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan.
-5. Пришлите ссылку на PR для ревью(вливать код в 'terraform-05' не нужно).
 ```
         PS C:\Обучение\repogithub\Netology-DevOps\4-terraform\terr-less-5\demonstration1>       terraform.exe force-unlock dd0a1b1a-87c5-5610-190a-8cf1d7b548ae
         Do you really want to force-unlock?
@@ -93,6 +83,17 @@
         The state has been unlocked, and Terraform commands should now be able to
         obtain a new lock on the remote state.
 ```
+
+------
+### Задание 3  
+
+1. Сделайте в GitHub из ветки 'terraform-05' новую ветку 'terraform-hotfix'.
+2. Проверье код с помощью tflint и checkov, исправьте все предупреждения и ошибки в 'terraform-hotfix', сделайте комит.
+3. Откройте новый pull request 'terraform-hotfix' --> 'terraform-05'. 
+4. Вставьте в комментарий PR результат анализа tflint и checkov, план изменений инфраструктуры из вывода команды terraform plan.
+5. Пришлите ссылку на PR для ревью(вливать код в 'terraform-05' не нужно).
+
+[Pull Request](https://github.com/Kizune1/devops-netology/pull/3)
 ------
 ### Задание 4
 
