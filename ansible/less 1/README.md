@@ -42,19 +42,51 @@
     #### new facts for prod.yml tasks 5-6
     ![new_facts_for_prod.yml](./res/new_facts_task5.png)
 7. При помощи `ansible-vault` зашифруйте факты в `group_vars/deb` и `group_vars/el` с паролем `netology`.
+    ```
+        ansible-vault encrypt ./group_vars/el/examp.yml
+        ansible-vault encrypt ./group_vars/deb/examp.yml
+    ```
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
+    ```
+        ansible запрашивает пароль только с ключем --ask-vault-password.
+    ```
 9. Посмотрите при помощи `ansible-doc` список плагинов для подключения. Выберите подходящий для работы на `control node`.
+    ```
+        Например - local
+        Для windows - psrp
+    ```
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
+    ```
+          local:
+            hosts:
+              localhost:
+                ansible_connection: local
+    ```
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь, что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
+    #### facts for all hosts
+    ![facts for all hosts](./res/playbook_for_task11.png)
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
+
 
 ## Необязательная часть
 
 1. При помощи `ansible-vault` расшифруйте все зашифрованные файлы с переменными.
+    ```
+        ansible-vault decrypt ./group_vars/deb/examp.yml
+        ansible-vault decrypt ./group_vars/el/examp.yml
+    ```
 2. Зашифруйте отдельное значение `PaSSw0rd` для переменной `some_fact` паролем `netology`. Добавьте полученное значение в `group_vars/all/exmp.yml`.
+    #### encrypt `PaSSw0rd` 
+    ![encrypt.pass](./res/encrypt_password.png)
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
+    #### ansible-playbook -i inventory/prod.yml site.yml --ask-vault-password
+    ![ansible-playbook](./res/ansible_playbook.png)
 4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот вариант](https://hub.docker.com/r/pycontribs/fedora).
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
+    #### [start stop docker script](./res/startdocker.sh)
+
+    #### Running script.
+    ![Running script](./res/running.png)
 6. Все изменения должны быть зафиксированы и отправлены в ваш личный репозиторий.
 
 ---
