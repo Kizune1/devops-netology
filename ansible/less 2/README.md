@@ -1,4 +1,20 @@
 # Install clickhouse and vector ansible playbook
+
+## modules and blocks
+    ```
+    name - name of module, block, play.
+    handlers - triggers befor installation.
+    tasks - tasks on remote hosts.
+    become - high privelege commands.
+    block - if you received an erron on main block, then block rescue will be work.
+    
+    ansible modules:
+        - ansible.builtin.service - interaction with a service.
+        - ansible.builtin.get_url - request get from url.
+        - ansible.builtin.yum - installation using yum.
+        - ansible.builtin.command - entering shell command.
+
+    ```
 ## Install clickhouse
 ### Main block "Install clickhouse"
     ```
@@ -45,4 +61,26 @@
       register: create_db
       failed_when: create_db.rc != 0 and create_db.rc !=82
       changed_when: create_db.rc == 0
+    ```
+### Install Vector
+    ```
+    - name: Install vector
+    hosts: vector
+    handlers:
+      - name: Start vector service
+        become: true
+        ansible.builtin.service:
+          name: vector
+          state: restarted  
+    tasks:
+      - name: add repo vector
+        shell: "curl -1sLf 'https://repositories.timber.io/public/vector/cfg/setup/bash.rpm.sh' | sudo -E bash"
+      - name: Install vector
+        become: true
+        ansible.builtin.yum:
+          name:
+            - vector
+        notify: Start vector service
+      - name: Flush handlers
+        meta: flush_handlers
     ```
