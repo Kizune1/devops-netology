@@ -28,7 +28,7 @@
             dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
     ```
 
-    - Install clickhouse
+### Install clickhouse
     ```
     - name: Install clickhouse packages
       become: true
