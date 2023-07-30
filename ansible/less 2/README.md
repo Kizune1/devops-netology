@@ -1,6 +1,6 @@
 # Install clickhouse and vector ansible playbook
 ## Install clickhouse
-    - Main block "Install clickhouse"
+### Main block "Install clickhouse"
     ```
     - name: Install Clickhouse          # name play
     hosts: clickhouse                   # clickhouse hosts
@@ -12,7 +12,7 @@
           state: restarted              # service state
     ```
 ## Tasks for install
-    - Get clickhouse distrib
+### Get clickhouse distrib
     ```
     tasks:
     - block:                                                                                                                    # start block
