@@ -43,3 +43,6 @@ terraform.rc
 **/*.pptx
 
 **/*private*
+
+**/key*
+**/id_rsa*
