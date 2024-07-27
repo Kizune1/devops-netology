@@ -1,0 +1,20 @@
+Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy (default-deploy) on project plaindoll: Failed to deploy artifacts: Could not transfer artifact org.netology:plaindoll:pom:0.0.1 from/to nexus (http://192.168.31.100:8081/repository/maven-releases): status code: 400, reason phrase: Repository does not allow updating assets: maven-releases (400)
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  1.477 s
+[INFO] Finished at: 2024-07-27T22:45:45+01:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-deploy-plugin:3.1.1:deploy (default-deploy) on project plaindoll: Failed to deploy artifacts: Could not transfer artifact org.netology:plaindoll:pom:0.0.1 from/to nexus (http://192.168.31.100:8081/repository/maven-releases): status code: 400, reason phrase: Repository does not allow updating assets: maven-releases (400) -> [Help 1]
+[ERROR]
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR]
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException
+Process exited with code 1
+Publishing artifacts
+Process exited with code 1 (Step: Maven)
+Waiting for 2 service processes to complete
+Surefire report watcher
+Step Maven failed
