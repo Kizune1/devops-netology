@@ -1,0 +1,13 @@
+node("docker"){
+    stage("check prod_run"){
+        prod_run=false
+    }
+    stage("First"){
+        if (prod_run){
+            sh "ansible --version"
+        }
+        else{
+            sh "ansible -m ping all"
+        }
+    }
+}
