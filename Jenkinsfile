@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('step 1') {
             steps {
-                sh'molecule --version'
+                sh'ansible --version'
             }
         }
     }
